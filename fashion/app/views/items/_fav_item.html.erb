@@ -1,0 +1,13 @@
+   <div>
+   Crap
+
+<%# THE BELOW PARTIAL RENDER CODE WORKS CORRECTLY. DO NOT FUCK WITH IT! 10/5/21 4:38PM %>
+   <%=  object.name %>
+
+
+   <%= form_with controller: @fav_item do |f| %>
+        <%# @fav_Item.create(object.attributes) %>
+        <%= f.submit "Create", :class => "btn" %>
+    <% end %>
+
+</div>

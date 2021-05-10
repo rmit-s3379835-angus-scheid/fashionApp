@@ -1,0 +1,2 @@
+class FavItem < ApplicationRecord
+end

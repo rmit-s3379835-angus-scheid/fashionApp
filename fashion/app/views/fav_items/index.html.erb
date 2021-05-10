@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Fav Items</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Price</th>
+      <th>Category</th>
+      <th>Popularity</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @fav_items.each do |fav_item| %>
+      <tr>
+        <td><%= fav_item.name %></td>
+        <td><%= fav_item.price %></td>
+        <td><%= fav_item.category %></td>
+        <td><%= fav_item.popularity %></td>
+        <td><%= link_to 'Show', fav_item %></td>
+        <td><%= link_to 'Edit', edit_fav_item_path(fav_item) %></td>
+        <td><%= link_to 'Destroy', fav_item, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Fav Item', new_fav_item_path %>
