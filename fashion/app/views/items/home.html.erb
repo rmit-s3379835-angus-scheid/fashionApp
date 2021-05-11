@@ -22,6 +22,8 @@
     <th colspan="3"></th>
   </tr>
 
+  <% favouritesArray = Array.new %>
+  <%# end %>
 
   <% @items.each do |currentItem| %>
 
@@ -32,51 +34,66 @@
       <td><%= currentItem.popularity %></td>
 
       <td>
-      <%#= render :partial =>'fav_item', :object => currentItem  %>
 
+      <% #I'm going to do a test of adding items 2 and 4 to an array of favourites, then I will write that to a cookie. %>
 
-      <%# THE BELOW PARTIAL RENDER CODE WORKS CORRECTLY. DO NOT FUCK WITH IT! 10/5/21 4:38PM %>
-      <%= render partial: 'fav_item', locals: {object: currentItem} %>
+      <%#
+      if currentItem.id == 2
+        favouritesArray.push(currentItem)
+      else if currentItem.id == 2
+        favouritesArray.push(currentItem)
 
-      <%#= render :partial=>'fav_items/fav_item', :object=>currentItem  %>
+      %>
+      <%# favouritesArray.push(currentItem.id) %>
 
+      <% if currentItem.id == 2
+        favouritesArray.push(currentItem.id)
+      elsif currentItem.id == 4
+        favouritesArray.push(currentItem.id)
+      end %>
 
-      <%#= render 'fav_item', locals: { currentItem: categories }  %>
-      <%#= render :partial=>'fav_item', :object=>currentItem  %>
-      <%#= render 'fav_item', locals: {:collection => @all_items} %>
+      <%= puts "whole print: " + favouritesArray.to_s
+       %>
+       <% #The array appears to be correct. Making cookie now. %>
 
-      <%#= render :partial=>"comments/comment", :object=>comment %>
-      <%#= render 'fav_item', locals: {:i => i} %>
-      <%#= render partial: 'show', locals: {profile: @profile} %>
+      <% end %>
+
+      <%#= puts favouritesArray %>
       </td>
 
-      According to the Rails docs. Please use
-      <%#= render partial: "form", :locals => { :f => f  } %> or
-      <%#= render "form", :f => f %> syntax.
-
- <%#=  render partial: "image_tag", locals: {image: i} %>
-      <!-- #Try just saving one at all. -->
-
-<%#= render :partial => "profiles/show", :collection => @profiles %>
-
-on partial _show.html.erb
-
-<%#= profile.fullname %>
 
 
+      </tr>
 
-    </tr>
-  <% end %>
+      <tr>
+      <td>
 
+      <% cookies[:favouritesArrayTest] = favouritesArray.to_json %>
 
+      <%= puts "Current Fav print:" %>
+      <%= "Current Fav print:" %>
+      <%# @favsReturn = cookies[:favouritesArrayTest] %>
+      <% puts cookies[:favouritesArrayTest] %>
+      <%=  cookies[:favouritesArrayTest] %>
 
+      <% @currentFavs = cookies[:favouritesArrayTest].scan(/\d+/).map(&:to_i) %>
+      <% puts @currentFavs %>
 
-  #This is a favouriting practice.
-  <tr>
+      <% @currentFavs.each do |x| %>
+        <%#= Item.where(id: x) %>
+        <% @Fitem = Item.find(x) %>
+        <% puts @Fitem %>
+        <% puts @Fitem.attributes %>
+        <%#= Item.where(id: params[:ids]) %>
+      <% end %>
 
-
-
-  </tr>
+      <%# @favsReturn do |currentFav| %>
+        <%#= currentFav %>
+      <%# end %>
+      </td>
+      </tr>
+      <%# THE BELOW PARTIAL RENDER CODE WORKS CORRECTLY. DO NOT FUCK WITH IT! 10/5/21 4:38PM %>
+      <%#= render partial: 'fav_item', locals: {object: currentItem} %>
 
 
 </table>

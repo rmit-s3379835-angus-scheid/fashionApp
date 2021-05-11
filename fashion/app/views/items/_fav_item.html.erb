@@ -2,7 +2,34 @@
    Crap
 
 <%# THE BELOW PARTIAL RENDER CODE WORKS CORRECTLY. DO NOT FUCK WITH IT! 10/5/21 4:38PM %>
-   <%=  object.name %>
+   <%#=  object.attributes %>
+   <% String testString = object.attributes.to_s %>
+   <%#= testString %>
+   <%= "--------------" %>
+   <%= object.attributes.to_json %>
+   <%# localStorage.setItem("1", testString); %>
+   <% @testCook = ("testCook" + object.id.to_s)   %>
+   <%=  "Testcookie should be right here:" + @testCook %>
+
+   <% cookies[:@testCook] = {
+   :value => object.attributes.to_json,
+   :expires => 4.years.from_now
+   } %>
+
+
+   <%#
+   cookies[:testCookie] = {
+     :value => object.attributes.to_json,
+     :expires => 4.years.from_now
+   }
+   %>
+
+    <script>
+    //localStorage.setItem("1", testString); /*object.attributes.to_s*/
+     //localStorage.getItem("essay"); // => "text"
+    </script>
+
+<%# session[:test_item] = object.attributes %>
 
 
    <%= form_with controller: @fav_item do |f| %>
