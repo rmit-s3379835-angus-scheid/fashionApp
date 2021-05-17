@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_07_120407) do
+ActiveRecord::Schema.define(version: 2021_05_17_062350) do
 
   create_table "fav_items", force: :cascade do |t|
     t.string "name"
@@ -26,6 +26,20 @@ ActiveRecord::Schema.define(version: 2021_05_07_120407) do
     t.string "category"
     t.float "price"
     t.float "popularity"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "user_id"
+  end
+
+  create_table "items_users", id: false, force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "item_id", null: false
+    t.index ["item_id", "user_id"], name: "index_items_users_on_item_id_and_user_id"
+    t.index ["user_id", "item_id"], name: "index_items_users_on_user_id_and_item_id"
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

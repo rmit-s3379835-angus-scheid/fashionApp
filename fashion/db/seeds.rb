@@ -11,9 +11,22 @@
 
 #inventory = Item.create([{name: 't-shirt', category: 'Mens', price: 10.00, popularity: 20.00 }  ])
 
+#items_users.create()
+
+puts "Seeding in progress"
+
 Item.create(name: 'T-shirt', category: 'Men', price: 10.00, popularity: 20.00)
+item = Item.new(name: 'T-shirt', category: 'Men', price: 10.00, popularity: 20.00)
+if item.save
+  puts "Happy days"
+else
+  puts "Item save failed"
+end
 Item.create(name: 'Dress', category: 'Women', price: 15.00, popularity: 17.00)
 Item.create(name: 'Jacket', category: 'Men', price: 20.00, popularity: 27.00)
 Item.create(name: 'Jeans', category: 'Women', price: 16.00, popularity: 30.00)
 Item.create(name: 'Children\'s t-shirt', category: 'Children', price: 8.00, popularity: 12.00)
 Item.create(name: 'Shoes', category: 'Men', price: 25.00, popularity: 25.50)
+
+User.create(name: 'Angus')
+

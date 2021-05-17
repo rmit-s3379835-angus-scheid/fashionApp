@@ -23,15 +23,49 @@
   </tr>
 
   <% favouritesArray = Array.new %>
-  <%# end %>
 
-  <% @items.each do |currentItem| %>
+
+  <%# end %>
+  <%
+    def saveFavouriteItem(inputItem)
+      #return <value>
+      puts "Execution successful"
+      puts inputItem.attributes
+      print "Execution successful" + inputItem.attributes.to_s
+    end
+  %>
+
+
+
+
+
+  <% @items.each do |current_item| %>
 
     <tr>
-      <td><%= currentItem.name %></td>
-      <td><%= currentItem.price %></td>
-      <td><%= currentItem.category %></td>
-      <td><%= currentItem.popularity %></td>
+      <td><%= current_item.name %></td>
+      <td><%= current_item.price %></td>
+      <td><%= current_item.category %></td>
+      <td><%= current_item.popularity %></td>
+
+      <td>
+        <%#= button_to [:show, @item] do %>
+        <%#= button_to do [@item]  %>
+          <%# favouritesArray.push(currentItem.id) %>
+          <%# cookies[:favouritesArrayTest] = favouritesArray.to_json %>
+        <%# end %>
+      </td>
+
+      <td>
+        <%#= button_to "Add favourite" :action => "saveFave" %>
+        <%#= button_to "Add favourite", :action => "addFave" %>
+        <%# button_to "Add favourite", {:controller => "item", :action => "add_fave", :id => current_item.id}, :method => :post %>
+        <%# button_to "smth", {:controller => "item", :action => "add_fave", method: :post, params: { start_point: 3.month.ago }} %>
+        <%= link_to "Add Fave", "/add-fave?item_id=#{current_item.id}" %>
+        <%#= button_to '+', {:controller => "votes", :action => "create", :car_id => car.id, :user_id=> session[:user_id]} , :method=>:post  %>
+
+
+        <%# end %>
+      </td>
 
       <td>
 
@@ -46,10 +80,10 @@
       %>
       <%# favouritesArray.push(currentItem.id) %>
 
-      <% if currentItem.id == 2
-        favouritesArray.push(currentItem.id)
-      elsif currentItem.id == 4
-        favouritesArray.push(currentItem.id)
+      <% if current_item.id == 2
+        favouritesArray.push(current_item.id)
+      elsif current_item.id == 4
+        favouritesArray.push(current_item.id)
       end %>
 
       <%= puts "whole print: " + favouritesArray.to_s
@@ -61,12 +95,14 @@
       <%#= puts favouritesArray %>
       </td>
 
-
+      <%#rails g migration CreateJoinTableProductsSuppliers products suppliers%>
 
       </tr>
 
       <tr>
       <td>
+
+      <%# THE BELOW COOKIE INTERFACE CODE WORKS CORRECTLY. DO NOT FUCK WITH IT! %>
 
       <% cookies[:favouritesArrayTest] = favouritesArray.to_json %>
 

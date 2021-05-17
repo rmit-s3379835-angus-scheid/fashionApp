@@ -1,6 +1,8 @@
 class ItemsController < ApplicationController
   before_action :set_item, only: %i[ show edit update destroy ]
 
+
+
   # GET /items or /items.json
   def index
     @items = Item.all
@@ -13,6 +15,17 @@ class ItemsController < ApplicationController
   def fav_item_params
     @items = Item.all
   end
+
+  def add_fave
+    #@item = Item.all.find(params[:id])
+    @item = Item.find(params[:item_id])
+    @user = User.find(1)
+    @user.items << @item
+    cookies[:userFavs] = @user.items.to_json
+    redirect_to home_url
+    #cookies[:favouritesArrayTest] = favouritesArray.to_json
+  end
+
 
   # GET /items/1 or /items/1.json
   def show
