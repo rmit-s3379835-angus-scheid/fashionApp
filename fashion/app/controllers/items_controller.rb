@@ -10,6 +10,7 @@ class ItemsController < ApplicationController
 
   def home
     @items = Item.all
+    @new_
   end
 
   def fav_item_params

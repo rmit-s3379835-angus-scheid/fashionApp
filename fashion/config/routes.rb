@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   resources :users
   resources :items
   resources :fav_items
+  resources :subscribes
 # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 
 #The code between these two comments is correct! Make a note of it!

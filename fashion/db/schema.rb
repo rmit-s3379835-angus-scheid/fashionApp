@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_17_062350) do
+ActiveRecord::Schema.define(version: 2021_05_19_082820) do
 
   create_table "fav_items", force: :cascade do |t|
     t.string "name"
@@ -38,10 +38,18 @@ ActiveRecord::Schema.define(version: 2021_05_17_062350) do
     t.index ["user_id", "item_id"], name: "index_items_users_on_user_id_and_item_id"
   end
 
-  create_table "users", force: :cascade do |t|
-    t.string "name"
+  create_table "subscribes", force: :cascade do |t|
+    t.string "email"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "name"
+    t.integer "items_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["items_id"], name: "index_users_on_items_id"
   end
 
 end
